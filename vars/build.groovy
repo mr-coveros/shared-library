@@ -38,7 +38,7 @@ def pipelineUI(servicePath,imageRepo) {
                         myImage.push()
                         myImage.push('dev')
                     }
-                    build job: 'deploy', parameters: [string(name: 'env', value: 'dev'), string(name: 'tag', value: 'dev')]
+//                    build job: 'deploy', parameters: [string(name: 'env', value: 'dev'), string(name: 'tag', value: 'dev')]
                 }
             }
             stage('promote') {
@@ -48,7 +48,7 @@ def pipelineUI(servicePath,imageRepo) {
                         myImage.pull()
                         myImage.push('latest')
                     }
-                    build job: 'deploy', parameters: [string(name: 'env', value: 'prod'), string(name: 'tag', value: 'latest')]
+//                    build job: 'deploy', parameters: [string(name: 'env', value: 'prod'), string(name: 'tag', value: 'latest')]
                 }
             }
         }
