@@ -5,7 +5,6 @@ def pipelineUI(servicePath,imageRepo) {
         }
         checkout scm
         dir(servicePath) {
-    /*
             stage('dependencies') {
                 docker.image('node:14.16').inside() {
                     sh 'npm ci --quiet --cache="./npm"'
@@ -30,7 +29,6 @@ def pipelineUI(servicePath,imageRepo) {
                     sh 'npm run build.production --cache="./npm"'
                 }
             }
-    */
             stage('deliver') {
                 if(env.BRANCH_NAME == 'develop') {
                     docker.withRegistry('', 'dockerhub') {
@@ -38,7 +36,7 @@ def pipelineUI(servicePath,imageRepo) {
                         myImage.push()
                         myImage.push('dev')
                     }
-                    build(job: 'deploy', parameters: [string(name: 'env', value: 'dev'), string(name: 'tag', value: 'dev')] )
+                    build(job: 'deploy', parameters: [string(name: 'env', value: 'dev'), string(name: 'tag', value: 'dev')])
                 }
             }
             stage('promote') {
